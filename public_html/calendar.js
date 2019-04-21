@@ -1,5 +1,6 @@
 // button handler to start requests to server
-submit = document.getElementById("submit").addEventListener('click', scheduleRequest);
+//submit = document.getElementById("submit").addEventListener('click', scheduleRequest);
+scheduleRequest()
 
 // handles submission to schedule an event
 function scheduleRequest(){
@@ -10,9 +11,9 @@ function scheduleRequest(){
     appt.eventEmail = "mpena@smith.edu"   //document.getElementById("eventemail").value;
     appt.eventName = "90 Day Watch Party" //document.getElementById("eventname").value;
     appt.guestCount = "10"                //document.getElementById("guest").value;
-    appt.eventDate = "2019-04-28"         //document.getElementById("eventdate").value;
+    appt.eventDate = "2019-01-02"         //document.getElementById("eventdate").value;
     appt.eventPlace = "Capen 2019"        //document.getElementById("eventplace").value;
-    appt.eventTime =  "20:30"             //document.getElementById("eventtime").value;
+    appt.eventTime =  "20:00"             //document.getElementById("eventtime").value;
     appt.request = "schedule";
     
     // set up ajax request and send appt obj to server
