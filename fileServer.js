@@ -1,52 +1,41 @@
-//Modules path/url/fs
-fs = require('fs');
-url = require('url');
-path = require('path');
+// needed Modules
+var fs = require('fs');
+var path = require('path');
 
-// Handles error
-function error(res){
-    res.writeHead(404, {'Content-Type': 'text/plain'});
-    res.write('Error 404: resource not found.');            
-    res.end();
-}
+// Serves files
+exports.readAndSendFile = function (res, file) {
+    var rs = fs.createReadStream(file);
+    var ct = content_type_for_path(file);
+    res.writeHead(200, { "Content-Type" : ct });
 
-// "exports.readAndSendFile" will export the function that is responsible for sending a file 
-exports.readAndSendFile = function (res, fileName){
-    //default as html for content type
-    contentType = 'text/html';
-    //This uses the method extname in the path module which will be used in the switch statement
-    pathName = path.extname(fileName);
-    //switch statements based on case in which content-type is defined
-    switch(pathName){
-        //creates cases in which we can either have js/css/text/images
-        case ".js":{
-           contentType =  'text/javascript';
-           break;
-        }
-        case ".css":{
-            contentType = 'text/css';
-            break;
-        }
-        case ".jpg":{
-            contentType = 'image/jpg';
-            break;
-        }
-        case ".txt":{
-            contentType = 'text/plain';
-            break;
-        }
-    } 
-    //'.readFile' is a callback function 
-    fs.readFile(fileName, (err,data) => {
-        //Calls error function
-        if (err) {
-            error(res);
-        }
-        //This part of the code will execute the clients request
-        else {
-            res.writeHead(200, {'Content-Type': contentType });
-            res.write(data);
-            res.end();
+    rs.on('error', (e) => {
+        res.writeHead(404, { "Content-Type" : "application/json" });
+        var out = { error: "not_found",
+                    message: "'" + file + "' not found" };
+        res.end(JSON.stringify(out) + "\n");
+        return;
+    });
+
+    rs.on('readable', () => {
+        var d = rs.read();
+        if (d) {
+            res.write(d);
         }
     });
+
+    rs.on('end', () => {
+        res.end();  // we're done!!!
+    });
+}
+
+// returns content type based on file given
+function content_type_for_path (file) {
+    var ext = path.extname(file);
+    switch (ext.toLowerCase()) {
+        case '.html': return "text/html";
+        case ".js": return "text/javascript";
+        case ".css": return 'text/css';
+        case '.jpg': case '.jpeg': return 'image/jpeg';
+        default: return 'text/plain';
+    }
 }

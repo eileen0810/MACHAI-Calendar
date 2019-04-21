@@ -1,30 +1,29 @@
+// needed modules
 utils = require('./utils')
 http = require('http');
 fs = require('fs');
 
-//Process query from form if given an eventDate
-exports.processQuery= function(query, res) {
-    switch (query.request) {
-        case "schedule":
-            console.log("schedule");
-            response(query, res);
-            break;
-        default:
-            console.log("error");
-            var errObj = {message: "Query not supported"};
-            utils.sendJSONappt(res,500,errObj);
-            break;
-    }   
+// decides what function handles each type of request
+exports.processQuery = function(query,res) {
+    if (query.request == 'schedule') 
+        processSchedule(query, res);
+    if (query.request == 'cancel') 
+        processCancel(query,res);
 }
 
-function response(query, res) {
-
-    //Recieves 
-   name = query.name;
-   eventName = query.eventName;
-   eventDate = query.eventDate;
-   eventTime = query.eventTime;
-
-   utils.sendJSONOBJ(res,200, name + "'s " + eventName+ " "+ eventDate+ " "+eventTime);
+// handles schedule request from client
+function processSchedule(query, res) {
+    console.log("Server received schedule request");
+    name = query.name;
+    eventName = query.eventName;
+    eventDate = query.eventDate;
+    eventTime = query.eventTime;
+    
+    utils.sendJSONOBJ(res,200, "available");
+    console.log("Server responded");
 }
 
+// handles cancel request from client
+function processCancel(query, res) {
+    utils.sendJSONOBJ(res,200, "success");
+}
