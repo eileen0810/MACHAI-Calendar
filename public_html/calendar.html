@@ -1,0 +1,139 @@
+<!DOCTYPE HTML>
+<HTML>
+    <head>
+        <link rel="stylesheet" type="text/css" href="calendar.css">
+        <title>MACHAI Appointment Maker</title>
+    </head>
+
+    <body>
+        <header>
+                <img src="MACHAILOGO.jpg" alt="MACHAI Logo">
+        </header>
+
+        <div id="navBar">
+            <ul>
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="calendar.html">Appointment</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </div>
+<section>
+        <div id='calendar'>
+            <table BORDER=3 CELLSPACING=3 CELLPADDING=3> 
+                <tr>
+                    <td id ="top" COLSPAN="7" > December 2019 </td> 
+                </tr> 
+
+                <tr class="rowday"> 
+                    <td >Sun</td>
+                    <td >Mon</td>
+                    <td >Tue</td>
+                    <td >Wed</td>
+                    <td >Thu</td>
+                    <td >Fri</td>
+                    <td >Sat</td>
+                </tr>
+                            
+                <tr class="rowday"> 
+                    <td ></td>
+                    <td ></td>
+                    <td ></td>
+                    <td ></td>
+                    <td ></td>
+                    <td ></td>
+                    <td >1</td>
+                </tr>
+                            
+                <tr class="rowday"> 
+                    <td >2</td>
+                    <td >3</td>
+                    <td >4</td>
+                    <td >5</td>
+                    <td >6</td>
+                    <td >7</td>
+                    <td >8</td>
+                </tr>
+
+                <tr class="rowday"> 
+                    <td >9</td>
+                    <td >10</td>
+                    <td >11</td>
+                    <td >12</td>
+                    <td >13</td>
+                    <td >14</td>
+                    <td >15</td>
+                </tr>
+                            
+                <tr class="rowday"> 
+                    <td >16</td>
+                    <td >17</td>
+                    <td >18</td>
+                    <td >19</td>
+                    <td >20</td>
+                    <td >21</td>
+                    <td >22</td>
+                </tr>
+                            
+                <tr class="rowday"> 
+                    <td >23</td>
+                    <td >24</td>
+                    <td >25</td>
+                    <td >26</td>
+                    <td >27</td>
+                    <td >28</td>
+                    <td >29</td>
+                </tr>
+                            
+                <tr class="rowday"> 
+                    <td >30</td>
+                    <td >31</td>
+                    <td ></td>
+                    <td ></td>
+                    <td ></td>
+                    <td ></td>
+                    <td ></td>
+                </tr>
+                            
+            </table>
+        </div>
+
+        <div id="form">
+            <form>
+                Sign up for Chai service Here!
+                <br>
+                First and Last Name:<br>
+                <input id="firstname" type="text" name="firstname">
+                <br><br>
+                Your email address: <br>
+                <input id="eventemail" type="email" name="eventemail">
+                <br><br>
+                Name of Event:<br>
+                <input id="eventname" type="text" name="eventname">
+                <br><br>
+                Guest count:<br>
+                <input id="guest" type="text" name="gues">
+                <br><br>
+                Event date:<br>
+                <input id="eventdate" type="date" name="eventdate">
+                <br><br>
+                Event address:<br>
+                <input id="eventplace" type="text" name="eventplace">
+                <br><br>
+                When should we be there:<br>
+                <input id="eventtime" type="time" name="eventtime">
+                <br>
+                <input id="submit" type="button" value="Submit">
+            </form> 
+        </div>
+            
+        <div id= "eventDisplay"></div>
+</section>
+        <footer>
+            <p>Info Section</p>
+        </footer>
+ 
+        
+        <script src= "calendar.js"></script>
+    </body>
+</HTML>
