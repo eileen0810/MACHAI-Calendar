@@ -33,7 +33,9 @@ function scheduleRequest(){
 function onloadScheduleRequest() {
     console.log("Client received server response")
     if (this.status == 200) {
+        console.log("status", this.responseText);
         var availability = JSON.parse(this.responseText);
+        console.log("availability", availability);
         if ( availability == "available") {
             document.getElementById("eventDisplay").innerHTML = "Yay, this time was available.";
         } else if ( availability == "unavailable"){

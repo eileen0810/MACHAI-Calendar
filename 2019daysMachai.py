@@ -1,13 +1,13 @@
 def main():
 
-
+timeString = ":[\"9am\", \"10am\", \"11am\", \"12pm\", \"1pm\", \"2pm\"],"
 #############################################################################################################################
 
 ## January has 31 days
     
-    y2019JAN = "{\"January\" = {"
+    y2019JAN = "{\"January\":{"
     for i in range(1, 32):
-        y2019JAN += '"' + str(i) + '"' + ":[\"9am\", \"10am\", \"11am\", \"12pm\", \"1pm\", \"2pm\"],"
+        y2019JAN += '"' + str(i) + '"' + timeString
         ##print(y2019)
 
     ## to get rid of last comma
@@ -21,9 +21,9 @@ def main():
 ## February (2019) has 28 days
 ## February (2020) has 29 days
     
-    y2019FEB = "{\"February\" = {"
+    y2019FEB = "{\"February\":{"
     for i in range(1, 30):
-        y2019FEB += '"' + str(i) + '"' + ":[\"9am\", \"10am\", \"11am\", \"12pm\", \"1pm\", \"2pm\"],"
+        y2019FEB += '"' + str(i) + '"' + timeString
         ##print(y2019)
 
     ## to get rid of last comma
@@ -35,9 +35,9 @@ def main():
 #############################################################################################################################
 
 ## March has 31 days    
-    y2019MAR = "{\"March\"= {"
+    y2019MAR = "{\"March\":{"
     for i in range(1, 32):
-        y2019MAR += '"' + str(i) + '"' + ":[\"9am\", \"10am\", \"11am\", \"12pm\", \"1pm\", \"2pm\"],"
+        y2019MAR += '"' + str(i) + '"' + timeString
         ##print(y2019)
 
     ## to get rid of last comma
@@ -51,9 +51,9 @@ def main():
 
 ## April has 30 days
     
-    y2019APR = "{\"April\" = {"
+    y2019APR = "{\"April\":{"
     for i in range(1, 31):
-        y2019APR += '"' + str(i) + '"' + ":[\"9am\", \"10am\", \"11am\", \"12pm\", \"1pm\", \"2pm\"],"
+        y2019APR += '"' + str(i) + '"' + timeString
         ##print(y2019)
 
     ## to get rid of last comma
@@ -66,9 +66,9 @@ def main():
 
 ## May has 31 days
     
-    y2019MAY = "{\"May\" = {"
+    y2019MAY = "{\"May\":{"
     for i in range(1, 32):
-        y2019MAY += '"' + str(i) + '"' + ":[\"9am\", \"10am\", \"11am\", \"12pm\", \"1pm\", \"2pm\"],"
+        y2019MAY += '"' + str(i) + '"' + timeString
         ##print(y2019)
 
     ## to get rid of last comma
@@ -81,9 +81,9 @@ def main():
 #############################################################################################################################
 
 ## June has 30 days 
-    y2019JUNE = "{\"June\" = {"
+    y2019JUNE = "{\"June\":{"
     for i in range(1, 31):
-        y2019JUNE += '"' + str(i) + '"' + ":[\"9am\", \"10am\", \"11am\", \"12pm\", \"1pm\", \"2pm\"],"
+        y2019JUNE += '"' + str(i) + '"' + timeString
         ##print(y2019)
 
     ## to get rid of last comma
@@ -98,9 +98,9 @@ def main():
 
 ## July has 31 days 
     
-    y2019JUL = "{\"July\"' = {"
+    y2019JUL = "{\"July\"':{"
     for i in range(1, 32):
-        y2019JUL += '"' + str(i) + '"' + ":[\"9am\", \"10am\", \"11am\", \"12pm\", \"1pm\", \"2pm\"],"
+        y2019JUL += '"' + str(i) + '"' + timeString
         ##print(y2019)
 
     ## to get rid of last comma
@@ -114,9 +114,9 @@ def main():
 
 ## August has 31 days 
     
-    y2019AUG= "{\"August\" = {"
+    y2019AUG= "{\"August\":{"
     for i in range(1, 32):
-        y2019AUG += '"' + str(i) + '"' + ":[\"9am\", \"10am\", \"11am\", \"12pm\", \"1pm\", \"2pm\"],"
+        y2019AUG += '"' + str(i) + '"' + timeString
         ##print(y2019)
 
     ## to get rid of last comma
@@ -130,9 +130,9 @@ def main():
 
 ## September has 30 days
     
-    y2019SEP = "{\"September\" = {"
+    y2019SEP = "{\"September\":{"
     for i in range(1, 31):
-        y2019SEP += '"' + str(i) + '"' + ":[\"9am\", \"10am\", \"11am\", \"12pm\", \"1pm\", \"2pm\"],"
+        y2019SEP += '"' + str(i) + '"' + timeString
         ##print(y2019)
 
     ## to get rid of last comma
@@ -146,9 +146,9 @@ def main():
 
 ## October has 31 days
     
-    y2019OCT = "{\"October\" = {"
+    y2019OCT = "{\"October\":{"
     for i in range(1, 32):
-        y2019OCT += '"' + str(i) + '"' + ":[\"9am\", \"10am\", \"11am\", \"12pm\", \"1pm\", \"2pm\"],"
+        y2019OCT += '"' + str(i) + '"' + timeString
         ##print(y2019)
 
     ## to get rid of last comma
@@ -162,9 +162,9 @@ def main():
 
 ## November has 30 days
     
-    y2019NOV = "{\"November\" = {"
+    y2019NOV = "{\"November\":{"
     for i in range(1, 31):
-        y2019NOV += '"' + str(i) + '"' + ":[\"9am\", \"10am\", \"11am\", \"12pm\", \"1pm\", \"2pm\"],"
+        y2019NOV += '"' + str(i) + '"' + timeString
         ##print(y2019)
 
     ## to get rid of last comma
@@ -179,9 +179,9 @@ def main():
 
 ## December has 31 days
     
-    y2019DEC = "{\"December\" = {"
+    y2019DEC = "{\"December\":{"
     for i in range(1, 32):
-        y2019DEC += '"' + str(i) + '"' + ":[\"9am\", \"10am\", \"11am\", \"12pm\", \"1pm\", \"2pm\"],"
+        y2019DEC += '"' + str(i) + '"' + timeString
         ##print(y2019)
 
     ## to get rid of last comma
