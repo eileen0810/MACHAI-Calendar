@@ -16,28 +16,20 @@ function processSchedule(query, res) {
     console.log("Server received schedule request");
     var availability = "";
     date = formatEventDate(query);
-    //console.log("Formatted date");
     yearData = readFile(date.year); 
-    //console.log("year data", yearData)
-
-    console.log(yearData[date.year][date.month]);
-    //console.log("Read file");
     availableTimes = yearData[date.year][date.month][date.day];
-    console.log("times array", availableTimes);
+    
     for (index in availableTimes) {
-        time = availableTimes[index]
-        console.log("timeeeee", time);
-        if ( time == query.eventTime) {
+        time = availableTimes[index];
+        if (time == query.eventTime) {
             availability = "available";
+            removeAppointment(date);
+            break;
         } else {
             availability = "unavailable";
         }
     }
     utils.sendJSONOBJ(res,200, availability);
-    //selectedDate = yearData.eventM.eventD;
-    //console.log(selectedDate);
-    
-    
     console.log("Server responded");
 }
 
@@ -46,13 +38,34 @@ function processCancel(query, res) {
     utils.sendJSONOBJ(res,200, "success");
 }
 
-// reads year file
+// reads the year file
 function readFile (year){
     fileName = year+"daysMachai.txt"
     var data = JSON.parse(fs.readFileSync(fileName, 'utf8'));
     return data;
 }
 
+// removes the appoinment from the database
+function removeAppointment(date){
+    console.log("removing apointment")
+    fileName = date.year+"daysMachai.txt";
+    yearData = readFile(date.year);
+    apptMonth = 
+    console.log(apptMonth);
+
+    fs.readFile(fileName, 'utf8', function(err, data){
+        if (err) {
+            console.log('error')
+        }
+        console.log(data.indexOf("January"));
+        console.log(data.indexOf("February"));
+        console.log(data.indexOf(apptMonth));
+        //var linesExceptFirst = data.split('\n').slice(1).join('\n');
+        //fs.writeFile(filename, linesExceptFirst);
+    });
+  }
+
+///////////////////////////////HELPER FUNCTIONS
 function formatEventDate( quer ) {
     dateObj = {} 
     date = quer.eventDate;
@@ -68,3 +81,4 @@ function formatEventDate( quer ) {
     dateObj.month = monthName;
     return dateObj;
   }
+

@@ -13,7 +13,7 @@ function scheduleRequest(){
     appt.guestCount = "10"                //document.getElementById("guest").value;
     appt.eventDate = "2019-01-02"         //document.getElementById("eventdate").value;
     appt.eventPlace = "Capen 2019"        //document.getElementById("eventplace").value;
-    appt.eventTime =  "20:00"             //document.getElementById("eventtime").value;
+    appt.eventTime =  "09:00"             //document.getElementById("eventtime").value;
     appt.request = "schedule";
     
     // set up ajax request and send appt obj to server
