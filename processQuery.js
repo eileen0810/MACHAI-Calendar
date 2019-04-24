@@ -23,7 +23,8 @@ function processSchedule(query, res) {
         time = availableTimes[index];
         if (time == query.eventTime) {
             availability = "available";
-            removeAppointment(date);
+            removeAppointment(date, time);
+            saveNewAppointment(query);
             break;
         } else {
             availability = "unavailable";
@@ -46,24 +47,32 @@ function readFile (year){
 }
 
 // removes the appoinment from the database
-function removeAppointment(date){
+function removeAppointment(date, time){
+    //var index = availableTimes[query.day].indexOf(query.time);
+    console.log(date);
     console.log("removing apointment")
     fileName = date.year+"daysMachai.txt";
     yearData = readFile(date.year);
-    apptMonth = 
-    console.log(apptMonth);
-
-    fs.readFile(fileName, 'utf8', function(err, data){
-        if (err) {
-            console.log('error')
-        }
-        console.log(data.indexOf("January"));
-        console.log(data.indexOf("February"));
-        console.log(data.indexOf(apptMonth));
-        //var linesExceptFirst = data.split('\n').slice(1).join('\n');
-        //fs.writeFile(filename, linesExceptFirst);
+    var index = yearData[date.year][date.month][date.day].indexOf(time);
+    yearData[date.year][date.month][date.day].splice(index, 1);
+    FINALyearData = JSON.stringify(yearData);
+    fs.writeFile(fileName, FINALyearData, function(err){
+        if (err) throw err;
+        console.log('done!');
     });
   }
+
+function saveNewAppointment(query){
+    appointments = JSON.parse(fs.readFileSync("appointments.txt", 'utf8'));
+    
+    //create an appointment object
+    appointments['appointments'].push(query);
+    updatedAppts = JSON.stringify(appointments);
+    fs.writeFile("appointments.txt", updatedAppts, function(err){
+        if (err) throw err;
+        console.log('appointment saved!');
+    });
+}
 
 ///////////////////////////////HELPER FUNCTIONS
 function formatEventDate( quer ) {
@@ -74,7 +83,7 @@ function formatEventDate( quer ) {
     dateObj.year = splitted[0];
     dateObj.month = Number(splitted[1]).toFixed(0);
     dateObj.day = "day" + (Number(splitted[2]).toFixed(0)).toString();
-    var months = [ "January", "February", "March", "April", "May", "June", 
+    var months = [ "FakeMonth","January", "February", "March", "April", "May", "June", 
              "July", "August", "September", "October", "November", "December"];
     
     var monthName = months[dateObj.month-1];

@@ -1,7 +1,7 @@
 // needed modules
 http = require('http');
-url = require('url');
-query = require("./processQuery");
+url = require('url'); 
+query = require("./processQuery"); 
 fileServer = require('./fileServer.js')
 
 // Handles all client requests
@@ -21,4 +21,4 @@ function requestHandler(req, res){
 }
 
 myserver = http.createServer(requestHandler); //create a server object
-myserver.listen(8080);
+myserver.listen(8080);     
