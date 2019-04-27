@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <HTML>
     <head>
-        <link rel="stylesheet" type="text/css" href="calendar.css">
+        <link rel="stylesheet" type="text/css" href="schedule.css">
         <title>MACHAI Appointment Maker</title>
     </head>
 
@@ -22,7 +22,7 @@
         <div id='calendar'>
             <table BORDER=3 CELLSPACING=3 CELLPADDING=3> 
                 <tr>
-                    <td id ="top" COLSPAN="7" > December 2019 </td> 
+                    <td id ="top" COLSPAN="7" ><b> December 2019 </b></td> 
                 </tr> 
 
                 <tr class="rowday"> 
@@ -103,7 +103,7 @@
                 Sign up for Chai service Here!
                 <br>
                 First and Last Name:<br>
-                <input id="firstname" type="text" name="firstname">
+                <input id="name" type="text" name="firstname">
                 <br><br>
                 Your email address: <br>
                 <input id="eventemail" type="email" name="eventemail">
@@ -127,13 +127,12 @@
             </form> 
         </div>
             
-        <div id= "eventDisplay"></div>
 </section>
         <footer>
-            <p>Info Section</p>
+            <p id= "eventDisplay">Info Section</p>
         </footer>
  
         
-        <script src= "calendar.js"></script>
+        <script src= "schedule.js"></script>
     </body>
 </HTML>

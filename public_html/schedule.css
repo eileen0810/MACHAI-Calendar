@@ -2,7 +2,7 @@
 
 html {
     background: linear-gradient(to top left, #33ccff 0%, #99ffcc 100%);
-    height: 100%;
+    height: 150%;
 }
 body{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -13,10 +13,11 @@ header {
 }
 
 #form{
-    float: left;
-    padding: 20px;
-    width: 300px;
-    height: 400px; 
+    float: right;
+    padding: 50px;
+    width: 500px;
+    height: 600px; 
+    text-align: center;
     background-color: #f1f1f1;
     
 }
@@ -71,20 +72,22 @@ img {
  #calendar{
     float: left;
     background: linear-gradient(to bottom, #ff9999 0%, #ffcc99 100%);
-    padding: 20px;
+    padding: 50px;
+    width: 771px;
+    height: 600px; 
     text-align: center;
 }
 table {
     text-align:center; 
     margin-left:auto; 
     margin-right:auto; 
-	border-collapse: collapse;
+	  border-collapse: collapse;
     background: linear-gradient(to bottom, #ff9999 0%, #ffcc99 100%);
 }
 
 #top {
     text-align:center;
-   padding: 10px 0;
+    padding: 10px 0;
 }
 
 tr, .rowday  {
@@ -93,9 +96,9 @@ tr, .rowday  {
 }
 
 td {
-    padding: 10px 30px;
+    padding: 25px 30px;
     border: 5px solid white;
-   text-align:left;
+    text-align:left;
 }
 
 td:hover {background-color: #f5f5f5;}

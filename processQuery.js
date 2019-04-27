@@ -48,9 +48,6 @@ function readFile (year){
 
 // removes the appoinment from the database
 function removeAppointment(date, time){
-
-    console.log(date);
-    console.log("removing apointment")
     fileName = date.year+"daysMachai.txt";
     yearData = readFile(date.year);
     var index = yearData[date.year][date.month][date.day].indexOf(time);
@@ -58,7 +55,6 @@ function removeAppointment(date, time){
     FINALyearData = JSON.stringify(yearData);
     fs.writeFile(fileName, FINALyearData, function(err){
         if (err) throw err;
-        console.log('done!');
     });
   }
 
@@ -79,11 +75,10 @@ function formatEventDate( quer ) {
     dateObj = {} 
     date = quer.eventDate;
     var splitted = date.split("-");
-    //console.log("splitted", splitted)
     dateObj.year = splitted[0];
     dateObj.month = Number(splitted[1]).toFixed(0);
     dateObj.day = "day" + (Number(splitted[2]).toFixed(0)).toString();
-    var months = [ "FakeMonth","January", "February", "March", "April", "May", "June", 
+    var months = [ "January", "February", "March", "April", "May", "June", 
              "July", "August", "September", "October", "November", "December"];
     
     var monthName = months[dateObj.month-1];
