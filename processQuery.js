@@ -48,7 +48,7 @@ function readFile (year){
 
 // removes the appoinment from the database
 function removeAppointment(date, time){
-    //var index = availableTimes[query.day].indexOf(query.time);
+
     console.log(date);
     console.log("removing apointment")
     fileName = date.year+"daysMachai.txt";
