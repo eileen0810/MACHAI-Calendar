@@ -1,5 +1,4 @@
  /* General Compartments */
-
 html {
     background: linear-gradient(to top left, #33ccff 0%, #99ffcc 100%);
     height: 150%;
@@ -33,6 +32,11 @@ section:after {
     display: table;
     clear: both;
   }
+
+#pageInfo {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.5);
+}
 
  
 /* Navigation bar */
