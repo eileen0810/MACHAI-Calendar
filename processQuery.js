@@ -5,13 +5,16 @@ fs = require('fs');
 
 // decides what function handles each type of request
 exports.processQuery = function(query,res) {
+    console.log(query.request);
     if (query.request == 'schedule') 
         processSchedule(query, res);
     if (query.request == 'cancel') 
         processCancel(query,res);
+    if (query.request == 'clickDate')
+        processClickDate(query, res);
 }
 
-// handles schedule request from client
+/////////////////////////////////////////////// SCHEDULE REQUEST
 function processSchedule(query, res) {
     console.log("Server received schedule request");
     var availability = "";
@@ -34,7 +37,7 @@ function processSchedule(query, res) {
     console.log("Server responded");
 }
 
-// handles cancel request from client
+/////////////////////////////////////////////// CANCEL REQUEST
 function processCancel(query, res) {
     console.log("Server received cancel request");
     appointFile = JSON.parse(fs.readFileSync("appointments.txt", 'utf8'));
@@ -56,6 +59,17 @@ function processCancel(query, res) {
     console.log("Server responded");
 }
 
+/////////////////////////////////////////////// CLICK DATE REQUEST
+function processClickDate(query, res) {
+    console.log("Server received click date request");
+    console.log("Received" + query.date);
+    appts = []
+    utils.sendJSONOBJ(res,200, appts);
+    console.log("Server responded");
+}
+
+
+/////////////////////////////// HELPER FUNCTIONS
 // reads the year file
 function readFile (year){
     fileName = year+"daysMachai.txt"
@@ -87,7 +101,7 @@ function saveNewAppointment(query){
     });
 }
 
-///////////////////////////////HELPER FUNCTIONS
+
 function formatEventDate( quer ) {
     dateObj = {} 
     date = quer.eventDate;
