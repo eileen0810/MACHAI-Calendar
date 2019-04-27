@@ -36,7 +36,24 @@ function processSchedule(query, res) {
 
 // handles cancel request from client
 function processCancel(query, res) {
-    utils.sendJSONOBJ(res,200, "success");
+    console.log("Server received cancel request");
+    appointFile = JSON.parse(fs.readFileSync("appointments.txt", 'utf8'));
+    apptArray = appointFile['appointments'];
+    var apptStatus = "";
+    for (i = 0; i < apptArray.length; i++) {
+        appt = apptArray[i];
+        console.log(appt.eventDate == query.eventDate && appt.eventTime == query.eventTime);
+        if (appt.eventDate == query.eventDate && appt.eventTime == query.eventTime){
+            console.log("found appointment");
+            apptStatus = "success";
+        } else {
+            console.log("couldn't find it");
+            apptStatus == "unsuccessful";
+        }
+    }
+    console.log(apptStatus);
+    utils.sendJSONOBJ(res,200, apptStatus);
+    console.log("Server responded");
 }
 
 // reads the year file

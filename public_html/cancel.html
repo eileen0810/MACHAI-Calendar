@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<HTML>
+    <head>
+        <link rel="stylesheet" type="text/css" href="cancel.css">
+        <title>MACHAI</title>
+    </head>
+
+    <body>
+
+        <header> 
+                <img src="MACHAILOGO.jpg" alt="MACHAI Logo">
+        </header>
+
+        <div class="navbar">
+            <a href="home.html">Home</a>
+            <div class="dropdown">
+              <button class="dropbtn">Events 
+                <i class="fa fa-caret-down"></i>
+              </button>
+              <div class="dropdown-content">
+                <a href="schedule.html">Schedule an Event</a>
+                <a href="cancel.html">Cancel an Event</a>
+                <a href="check.html">Check Your Event</a>
+              </div>
+            </div> 
+            <a href="#news">Contact</a>
+            <a href="#news">About</a>
+          </div>
+
+          <div id="form">
+                <form>
+                    If you would like to cancel an event fill out the form!
+                    <br><br>
+                    First and Last Name:<br>
+                    <input id="name" type="text" name="firstname">
+                    <br><br>
+                    Name of Event:<br>
+                    <input id="eventname" type="text" name="eventname">
+                    <br><br>
+                    Event date:<br>
+                    <input id="eventdate" type="date" name="eventdate">
+                    <br><br>
+                    Event Time:<br>
+                    <input id="eventtime" type="time" name="eventtime">
+                    <br>
+                    <input id="submit" type="button" value="Submit">
+                </form> 
+            </div>
+            <footer>
+                    <p id= "eventDisplay">Info Section</p>
+                </footer>
+
+        <script src= "cancel.js"></script>
+    </body>
+</HTML>
