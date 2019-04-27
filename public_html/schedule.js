@@ -1,7 +1,7 @@
 // button handler to start requests to server
 submit = document.getElementById("submit").addEventListener('click', scheduleRequest);
 
-// handles submission to schedule an event
+/////////////////////////////////////////////// HANDLES SUBMISSION 
 function scheduleRequest(){
     // create appointment object
     console.log("Client schedule event requested")
@@ -21,7 +21,7 @@ function scheduleRequest(){
 
 // handles event request response from the server
 function onloadScheduleRequest() {
-    console.log("Client received server response")
+    console.log("Client received server schedule response")
     appt = getInfoFromForm();
     if (this.status == 200) {
         clearInputForm();
@@ -38,12 +38,46 @@ function onloadScheduleRequest() {
             document.getElementById("eventDisplay").innerHTML = "Sorry, this is not a valid time.";
         }  
     } else { 
-        alert("Error with server EventRequest response.");
+        alert("Error with server schedule request response.");
     }
 }
 
-///////////////////////// HELPER FUNCTIONS
-// helper function that turns an object into JSON format
+//////////////////////////////////////// HANDLES CALENDAR CLICK
+cells = document.getElementsByTagName("td");
+for (td of cells) {
+    td.addEventListener("click", clickDateRequest);
+}
+
+function clickDateRequest(){
+    day = this.innerHTML;
+    monthandyear = document.getElementById("top").innerHTML;
+    checkFor = {};
+    checkFor.date = formatDate(day, monthandyear);;
+    checkFor.request = "clickDate";
+    var AJAXObj = new XMLHttpRequest();
+    AJAXObj.onload = onloadClickDateRequest;
+    AJAXObj.onerror = function(){
+        alert("AJAX response error");
+    }
+    AJAXObj.open("GET","http://localhost:8080/?"+checkFor);
+    AJAXObj.setRequestHeader("Content-type", "application/json"); 
+    AJAXObj.send();
+    console.log("Client click date requested")
+}
+
+
+
+function onloadClickDateRequest(){
+    console.log("Client received click date server response")
+    if (this.status == 200) {
+         appts = this.responseText;
+         console.log(appts);
+    } else {
+        alert("Error with click date server response.");
+    }
+}
+
+////////////////////////////////////////////////////////// HELPER FUNCTIONS
 function objectToString(query){
     var properties = Object.keys(query);
     var arrOfQuesryStrings = properties.map(prop => prop+"="+handleSpaces(query[prop].toString()));
@@ -60,6 +94,10 @@ function handleSpaces(str) {
             newStr += str[k];    
     }
     return newStr;
+}
+
+function getMonthFromString(mon){
+    return new Date(Date.parse(mon+"1,2012")).getMonth()+1;
 }
 
 function getInfoFromForm() {
@@ -84,4 +122,20 @@ function clearInputForm() {
     document.getElementById("eventdate").value = "";
     document.getElementById("eventplace").value = "";
     document.getElementById("eventtime").value = "";
+}
+
+function formatDate(day, monthandyear){
+    var splitted = monthandyear.split(" ");
+    month = splitted[0];
+    month = getMonthFromString(month);
+    day = formatDay(day);
+    newDate = splitted[1] +"-"+ month +"-" + day; 
+    console.log(newDate);
+}
+
+function formatDay(day){
+    if (day.length < 2 ) {
+        newDay = "0" + day;
+    }
+    return newDay;
 }

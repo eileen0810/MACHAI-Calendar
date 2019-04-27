@@ -10,13 +10,20 @@
                 <img src="MACHAILOGO.jpg" alt="MACHAI Logo">
         </header>
 
-        <div id="navBar">
-            <ul>
-                <li><a href="home.html">Home</a></li>
-                <li><a href="calendar.html">Appointment</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="about.html">About</a></li>
-            </ul>
+        <div class="navbar">
+                <a href="home.html">Home</a>
+                <div class="dropdown">
+                  <button class="dropbtn">Events 
+                    <i class="fa fa-caret-down"></i>
+                  </button>
+                  <div class="dropdown-content">
+                    <a href="schedule.html">Schedule an Event</a>
+                    <a href="cancel.html">Cancel an Event</a>
+                    <a href="check.html">Check Your Event</a>
+                  </div>
+                </div> 
+                <a href="#news">Contact</a>
+                <a href="#news">About</a>
         </div>
 
 
@@ -35,7 +42,7 @@
         <div id='calendar'>
             <table BORDER=3 CELLSPACING=3 CELLPADDING=3> 
                 <tr>
-                    <td id ="top" COLSPAN="7" ><b> December 2019 </b></td> 
+                    <td id ="top" COLSPAN="7">December 2019 </td> 
                 </tr> 
 
                 <tr class="rowday"> 
