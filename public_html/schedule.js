@@ -74,8 +74,7 @@ function onloadClickDateRequest(){
     console.log("Client received click date server response")
     if (this.status == 200) {
         appts = this.responseText;
-        console.log(appts);
-        document.getElementById("eventDisplay").innerHTML = "Available times: " + appts;
+        document.getElementById("eventDisplay").innerHTML = "Available times: " + (JSON.parse(appts));
 
     } else {
         alert("Error with click date server response.");
