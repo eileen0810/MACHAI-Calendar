@@ -24,7 +24,7 @@ function onloadScheduleRequest() {
     console.log("Client received server schedule response")
     appt = getInfoFromForm();
     if (this.status == 200) {
-        clearInputForm();
+        //clearInputForm(); 
         var availability = JSON.parse(this.responseText);
         if ( availability == "available") {
             document.getElementById("eventDisplay").innerHTML = "Great " + appt.name + "! " + 
@@ -37,6 +37,7 @@ function onloadScheduleRequest() {
         } else if ( availability == "notvalid"){
             document.getElementById("eventDisplay").innerHTML = "Sorry, this is not a valid time.";
         }  
+        
     } else { 
         alert("Error with server schedule request response.");
     }

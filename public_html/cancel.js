@@ -1,9 +1,9 @@
-//submit = document.getElementById("submit").addEventListener("click",cancelRequest);
-cancelRequest();
+submit = document.getElementById("submit").addEventListener("click",cancelRequest);
+
 
 function cancelRequest(){
      // create cancel object
-     console.log("Client schedule event requested")
+     console.log("Client cancel event requested")
      apptCancel = getInfoFromCancelForm();
      
      // set up ajax request and send apptCancel obj to server
@@ -13,7 +13,6 @@ function cancelRequest(){
          alert("AJAX response error");
      }
      msg = objectToString(apptCancel);
-     console.log(msg);
      AJAXObj.open("GET","http://localhost:8080/?"+msg);
      AJAXObj.setRequestHeader("Content-type", "application/json"); 
      AJAXObj.send();
@@ -22,14 +21,11 @@ function cancelRequest(){
  function onloadCancelRequest() {
     console.log("Client received cancel server response")
     apptCancel = getInfoFromCancelForm();
-    console.log(apptCancel);
-    console.log(apptCancel.name);
     
     if (this.status == 200) {
         //clearInputForm();
         var apptStatus = JSON.parse(this.responseText);
         if ( apptStatus == "success") {
-            console.log(apptCancel);
             document.getElementById("eventDisplay").innerHTML = "Okay " + apptCancel.name + "! " + 
                                                                 "Your Machai tea appointment has been cancelled " + apptCancel.eventDate +
                                                                 " at " + apptCancel.eventTime;
@@ -38,6 +34,7 @@ function cancelRequest(){
         } else if ( apptStatus == "notvalid"){
             document.getElementById("eventDisplay").innerHTML = "Sorry, this is not a valid time.";
         }  
+        
     } else { 
         alert("Error with server EventRequest response.");
     }
@@ -45,10 +42,10 @@ function cancelRequest(){
 ///////////////////////// HELPER FUNCTIONS
 function getInfoFromCancelForm() {
     var apptCancel = {};
-    apptCancel.name = "lol" //document.getElementById("name").value; 
-    apptCancel.eventName = "lol" //document.getElementById("eventname").value;
-    apptCancel.eventDate = "2019-01-01" //document.getElementById("eventdate").value;
-    apptCancel.eventTime = "09:00" //document.getElementById("eventtime").value;
+    apptCancel.name = document.getElementById("name").value; 
+    apptCancel.eventName = document.getElementById("eventname").value;
+    apptCancel.eventDate = document.getElementById("eventdate").value;
+    apptCancel.eventTime = document.getElementById("eventtime").value;
     apptCancel.request = "cancel";
 
     return apptCancel;

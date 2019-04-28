@@ -5,7 +5,6 @@ fs = require('fs');
 
 // decides what function handles each type of request
 exports.processQuery = function(query,res) {
-    console.log(query.request);
     if (query.request == 'schedule') 
         processSchedule(query, res);
     if (query.request == 'cancel') 
@@ -26,7 +25,7 @@ function processSchedule(query, res) {
         time = availableTimes[index];
         if (time == query.eventTime) {
             availability = "available";
-            removeAppointment(date, time);
+            deleteTimeFromDB(date, time);
             saveNewAppointment(query);
             break;
         } else {
@@ -45,16 +44,19 @@ function processCancel(query, res) {
     var apptStatus = "";
     for (i = 0; i < apptArray.length; i++) {
         appt = apptArray[i];
-        console.log(appt.eventDate == query.eventDate && appt.eventTime == query.eventTime);
-        if (appt.eventDate == query.eventDate && appt.eventTime == query.eventTime){
-            console.log("found appointment");
+        if (appt.eventDate == query.eventDate && 
+            appt.eventTime == query.eventTime &&
+            appt.name == query.name){
+            console.log("Found appointment");
             apptStatus = "success";
+            deleteAppointmentFromAppts(i);
+            addTimeToTheDataBase(query);
+            console.log("Deleted appointment");
         } else {
-            console.log("couldn't find it");
+            console.log("Couldn't find appt");
             apptStatus == "unsuccessful";
         }
     }
-    console.log(apptStatus);
     utils.sendJSONOBJ(res,200, apptStatus);
     console.log("Server responded");
 }
@@ -62,7 +64,6 @@ function processCancel(query, res) {
 /////////////////////////////////////////////// CLICK DATE REQUEST
 function processClickDate(query, res) {
     console.log("Server received click date request");
-    console.log("Received" + query.date);
     appts = []
     utils.sendJSONOBJ(res,200, appts);
     console.log("Server responded");
@@ -78,7 +79,7 @@ function readFile (year){
 }
 
 // removes the appoinment from the database
-function removeAppointment(date, time){
+function deleteTimeFromDB(date, time){
     fileName = date.year+"daysMachai.txt";
     yearData = readFile(date.year);
     var index = yearData[date.year][date.month][date.day].indexOf(time);
@@ -89,15 +90,36 @@ function removeAppointment(date, time){
     });
   }
 
+function addTimeToTheDataBase(quer){
+    date = formatEventDate(quer);
+    time = quer.eventTime;
+    fileName = date.year+"daysMachai.txt";
+    yearData = readFile(date.year);
+    yearData[date.year][date.month][date.day].push(time);
+    FINALyearData = JSON.stringify(yearData);
+    fs.writeFile(fileName, FINALyearData, function(err){
+        if (err) throw err;
+    });
+
+}
+
 function saveNewAppointment(query){
     appointments = JSON.parse(fs.readFileSync("appointments.txt", 'utf8'));
-    
-    //create an appointment object
     appointments['appointments'].push(query);
     updatedAppts = JSON.stringify(appointments);
     fs.writeFile("appointments.txt", updatedAppts, function(err){
         if (err) throw err;
-        console.log('appointment saved!');
+    });
+}
+
+function deleteAppointmentFromAppts(index){
+    appointments = JSON.parse(fs.readFileSync("appointments.txt", 'utf8'));
+    apptArray = appointments['appointments'];
+    appt = apptArray[index];
+    appointments['appointments'].pop(appt);
+    updatedAppts = JSON.stringify(appointments);
+    fs.writeFile("appointments.txt", updatedAppts, function(err){
+        if (err) throw err;
     });
 }
 
