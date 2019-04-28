@@ -24,7 +24,7 @@ function onloadScheduleRequest() {
     console.log("Client received server schedule response")
     appt = getInfoFromForm();
     if (this.status == 200) {
-        //clearInputForm(); 
+        clearInputForm(); 
         var availability = JSON.parse(this.responseText);
         if ( availability == "available") {
             document.getElementById("eventDisplay").innerHTML = "Great " + appt.name + "! " + 
@@ -51,28 +51,32 @@ for (td of cells) {
 
 function clickDateRequest(){
     day = this.innerHTML;
+    //console.log("inner html", day)
     monthandyear = document.getElementById("top").innerHTML;
     checkFor = {};
-    checkFor.date = formatDate(day, monthandyear);;
+    checkFor.eventDate = formatDate(day, monthandyear);
     checkFor.request = "clickDate";
+    console.log("object", checkFor);
+    msg = objectToString(checkFor);
+    console.log(msg);
     var AJAXObj = new XMLHttpRequest();
     AJAXObj.onload = onloadClickDateRequest;
     AJAXObj.onerror = function(){
         alert("AJAX response error");
     }
-    AJAXObj.open("GET","http://localhost:8080/?"+checkFor);
+    AJAXObj.open("GET","http://localhost:8080/?"+msg);
     AJAXObj.setRequestHeader("Content-type", "application/json"); 
     AJAXObj.send();
     console.log("Client click date requested")
 }
 
-
-
 function onloadClickDateRequest(){
     console.log("Client received click date server response")
     if (this.status == 200) {
-         appts = this.responseText;
-         console.log(appts);
+        appts = this.responseText;
+        console.log(appts);
+        document.getElementById("eventDisplay").innerHTML = "Available times: " + appts;
+
     } else {
         alert("Error with click date server response.");
     }
@@ -130,13 +134,17 @@ function formatDate(day, monthandyear){
     month = splitted[0];
     month = getMonthFromString(month);
     day = formatDay(day);
+    //console.log(day)
     newDate = splitted[1] +"-"+ month +"-" + day; 
-    console.log(newDate);
+    return newDate;
+   // console.log(newDate);
 }
 
 function formatDay(day){
     if (day.length < 2 ) {
         newDay = "0" + day;
+    }else{
+        newDay = day;
     }
     return newDay;
 }

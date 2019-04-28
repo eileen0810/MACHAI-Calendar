@@ -65,7 +65,14 @@ function processCancel(query, res) {
 function processClickDate(query, res) {
     console.log("Server received click date request");
     appts = []
-    utils.sendJSONOBJ(res,200, appts);
+    console.log("hi");
+    console.log(query);
+    date = formatEventDate(query);
+    yearData = readFile(date.year); 
+    availableTimes = yearData[date.year][date.month][date.day];
+    availableTimes = availableTimes.toString().replace(/[',']+/g, ', ');
+
+    utils.sendJSONOBJ(res,200, availableTimes);
     console.log("Server responded");
 }
 
@@ -127,6 +134,7 @@ function deleteAppointmentFromAppts(index){
 function formatEventDate( quer ) {
     dateObj = {} 
     date = quer.eventDate;
+    console.log(date);
     var splitted = date.split("-");
     dateObj.year = splitted[0];
     dateObj.month = Number(splitted[1]).toFixed(0);

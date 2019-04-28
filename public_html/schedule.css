@@ -13,7 +13,7 @@ header {
 
 #form{
     float: right;
-    padding: 50px;
+    padding: 15px;
     width: 500px;
     height: 600px; 
     text-align: center;
@@ -116,7 +116,7 @@ img {
  #calendar{
     float: left;
     background: linear-gradient(to bottom, #ff9999 0%, #ffcc99 100%);
-    padding: 50px;
+    padding: 15px;
     width: 771px;
     height: 600px; 
     text-align: center;

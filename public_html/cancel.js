@@ -23,7 +23,6 @@ function cancelRequest(){
     apptCancel = getInfoFromCancelForm();
     
     if (this.status == 200) {
-        //clearInputForm();
         var apptStatus = JSON.parse(this.responseText);
         if ( apptStatus == "success") {
             document.getElementById("eventDisplay").innerHTML = "Okay " + apptCancel.name + "! " + 
@@ -34,6 +33,7 @@ function cancelRequest(){
         } else if ( apptStatus == "notvalid"){
             document.getElementById("eventDisplay").innerHTML = "Sorry, this is not a valid time.";
         }  
+        clearInputForm();
         
     } else { 
         alert("Error with server EventRequest response.");
