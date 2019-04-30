@@ -6,6 +6,11 @@ html {
 header {
     text-align: center;
 }
+
+#pageInfo {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.5);
+}
 /* Navigation bar */
 body {
     font-family: Arial, Helvetica, sans-serif;
