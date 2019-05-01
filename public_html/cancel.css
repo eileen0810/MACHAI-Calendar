@@ -84,12 +84,12 @@ body {
 }
  /* Form */
 #form{
-    padding-top: 50px;
-    padding-left: 50px;
-    padding-right: 50px;
-    width: 1235px;
-    height: 400px; 
+    padding-top: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 30px;
     text-align: center;
+    margin: 0 auto;
     
 }
 /*Footer*/

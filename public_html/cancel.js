@@ -30,9 +30,7 @@ function cancelRequest(){
                                                                 " at " + apptCancel.eventTime;
         } else if ( apptStatus == "unsuccessful"){
             document.getElementById("eventDisplay").innerHTML = "Sorry, this time was never scheduled.";
-        } else if ( apptStatus == "notvalid"){
-            document.getElementById("eventDisplay").innerHTML = "Sorry, this is not a valid time.";
-        }  
+        }
         clearInputForm();
         
     } else { 

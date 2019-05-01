@@ -54,7 +54,7 @@ function processCancel(query, res) {
             console.log("Deleted appointment");
         } else {
             console.log("Couldn't find appt");
-            apptStatus == "unsuccessful";
+            apptStatus = "unsuccessful";
         }
     }
     utils.sendJSONOBJ(res,200, apptStatus);
