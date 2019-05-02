@@ -65,7 +65,6 @@ function processCancel(query, res) {
 function processClickDate(query, res) {
     console.log("Server received click date request");
     appts = []
-    console.log("hi");
     console.log(query);
     date = formatEventDate(query);
     yearData = readFile(date.year); 
